@@ -12,7 +12,7 @@ import (
 	"os"
 )
 
-func main() {
+func xxxmain() {
 	s, sep := "", ""
 	for _, arg := range os.Args[1:] {
 		s += sep + arg

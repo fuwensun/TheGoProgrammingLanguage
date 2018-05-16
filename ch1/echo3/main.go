@@ -13,7 +13,7 @@ import (
 )
 
 //!+
-func main() {
+func xxxmain() {
 	fmt.Println(strings.Join(os.Args[1:], " "))
 }
 

@@ -9,7 +9,7 @@ package main
 
 import "fmt"
 
-func main() {
+func xxxxmain() {
 	fmt.Println("Hello, 世界")
 }
 
