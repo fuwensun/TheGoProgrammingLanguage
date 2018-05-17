@@ -4,7 +4,7 @@
 // See page 21.
 
 // Server3 is an "echo" server that displays request parameters.
-package main
+package x
 
 import (
 	"fmt"
