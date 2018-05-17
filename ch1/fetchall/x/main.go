@@ -5,7 +5,7 @@
 //!+
 
 // Fetchall fetches URLs in parallel and reports their times and sizes.
-package main
+package x
 
 import (
 	"fmt"
