@@ -14,7 +14,7 @@ import (
 	"os"
 )
 
-func main() {
+func xxxmain() {
 	counts := make(map[string]int)
 	files := os.Args[1:]
 	if len(files) == 0 {
@@ -37,7 +37,7 @@ func main() {
 	}
 }
 
-func countLines(f *os.File, counts map[string]int) {
+func xxxcountLines(f *os.File, counts map[string]int) {
 	input := bufio.NewScanner(f)
 	for input.Scan() {
 		counts[input.Text()]++
