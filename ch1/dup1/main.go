@@ -14,7 +14,7 @@ import (
 	"os"
 )
 
-func main() {
+func xxxmain() {
 	counts := make(map[string]int)
 	input := bufio.NewScanner(os.Stdin)
 	for input.Scan() {
