@@ -5,7 +5,7 @@
 //!+
 
 // Ftoc prints two Fahrenheit-to-Celsius conversions.
-package main
+package x
 
 import "fmt"
 
