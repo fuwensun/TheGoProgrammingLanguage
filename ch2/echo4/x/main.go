@@ -5,7 +5,7 @@
 //!+
 
 // Echo4 prints its command-line arguments.
-package main
+package x
 
 import (
 	"flag"
