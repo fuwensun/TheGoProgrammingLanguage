@@ -14,7 +14,7 @@
 // 	1,234
 // 	1,234,567,890
 //
-package main
+package x
 
 import (
 	"fmt"
