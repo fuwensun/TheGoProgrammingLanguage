@@ -4,7 +4,7 @@
 // See page 72.
 
 // Basename2 reads file names from stdin and prints the base name of each one.
-package main
+package x
 
 import (
 	"bufio"
