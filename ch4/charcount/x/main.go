@@ -5,7 +5,7 @@
 //!+
 
 // Charcount computes counts of Unicode characters.
-package main
+package x
 
 import (
 	"bufio"
