@@ -4,7 +4,7 @@
 // See page 96.
 
 // Dedup prints only one instance of each line; duplicates are removed.
-package main
+package x
 
 import (
 	"bufio"

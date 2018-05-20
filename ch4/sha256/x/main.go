@@ -4,7 +4,7 @@
 // See page 83.
 
 // The sha256 command computes the SHA256 hash (an array) of a string.
-package main
+package x
 
 import "fmt"
 

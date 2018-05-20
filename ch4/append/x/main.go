@@ -4,7 +4,7 @@
 // See page 88.
 
 // Append illustrates the behavior of the built-in append function.
-package main
+package x
 
 import "fmt"
 

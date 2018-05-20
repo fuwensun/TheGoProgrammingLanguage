@@ -28,7 +28,10 @@ func main() {
 			x := float64(px)/width*(xmax-xmin) + xmin
 			z := complex(x, y)
 			// Image point (px, py) represents complex value z.
-			img.Set(px, py, mandelbrot(z))
+			//img.Set(px, py, mandelbrot(z))
+			//img.Set(px, py, acos(z))
+			//img.Set(px, py, sqrt(z))
+			img.Set(px, py, newton(z))
 		}
 	}
 	png.Encode(os.Stdout, img) // NOTE: ignoring errors
