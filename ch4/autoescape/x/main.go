@@ -4,7 +4,7 @@
 // See page 117.
 
 // Autoescape demonstrates automatic HTML escaping in html/template.
-package main
+package x
 
 import (
 	"html/template"

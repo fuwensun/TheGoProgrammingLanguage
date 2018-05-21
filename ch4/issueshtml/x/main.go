@@ -4,7 +4,7 @@
 // See page 115.
 
 // Issueshtml prints an HTML table of issues matching the search terms.
-package main
+package x
 
 import (
 	"log"
