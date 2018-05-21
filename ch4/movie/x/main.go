@@ -4,7 +4,7 @@
 // See page 108.
 
 // Movie prints Movies as JSON.
-package main
+package x
 
 import (
 	"encoding/json"
