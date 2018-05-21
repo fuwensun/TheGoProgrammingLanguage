@@ -5,7 +5,7 @@
 //!+
 
 // Issues prints a table of GitHub issues matching the search terms.
-package main
+package x
 
 import (
 	"fmt"

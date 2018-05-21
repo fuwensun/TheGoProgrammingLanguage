@@ -4,7 +4,7 @@
 // See page 113.
 
 // Issuesreport prints a report of issues matching the search terms.
-package main
+package x
 
 import (
 	"log"
