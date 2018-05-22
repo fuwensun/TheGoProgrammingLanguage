@@ -8,7 +8,7 @@
 //
 // Usage:
 //	findlinks url ...
-package main
+package x
 
 import (
 	"fmt"

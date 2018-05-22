@@ -4,7 +4,7 @@
 // See page 133.
 
 // Outline prints the outline of an HTML document tree.
-package main
+package x
 
 import (
 	"fmt"
