@@ -4,7 +4,7 @@
 // See page 139.
 
 // Findlinks3 crawls the web, starting with the URLs on the command line.
-package main
+package x
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ import (
 // f is called at most once for each item.
 func breadthFirst(f func(item string) []string, worklist []string) {
 	seen := make(map[string]bool)
-	for len(worklist) > 0 {
+	for len(worklist) > 0 {	//<-------------------
 		items := worklist
 		worklist = nil
 		for _, item := range items {
@@ -36,7 +36,7 @@ func breadthFirst(f func(item string) []string, worklist []string) {
 
 //!+crawl
 func crawl(url string) []string {
-	fmt.Println(url)
+	fmt.Println("-->"+url)
 	list, err := links.Extract(url)
 	if err != nil {
 		log.Print(err)
