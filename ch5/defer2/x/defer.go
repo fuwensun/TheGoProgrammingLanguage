@@ -4,7 +4,7 @@
 // See page 151.
 
 // Defer2 demonstrates a deferred call to runtime.Stack during a panic.
-package main
+package x
 
 import (
 	"fmt"

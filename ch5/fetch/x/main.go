@@ -4,7 +4,7 @@
 // See page 148.
 
 // Fetch saves the contents of a URL into a local file.
-package main
+package x
 
 import (
 	"fmt"

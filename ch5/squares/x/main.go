@@ -4,7 +4,7 @@
 // See page 135.
 
 // The squares program demonstrates a function value with state.
-package main
+package x
 
 import "fmt"
 

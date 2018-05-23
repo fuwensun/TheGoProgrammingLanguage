@@ -4,7 +4,7 @@
 // See page 150.
 
 // Defer1 demonstrates a deferred call being invoked during a panic.
-package main
+package x
 
 import "fmt"
 
