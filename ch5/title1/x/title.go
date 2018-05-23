@@ -4,7 +4,7 @@
 // See page 144.
 
 // Title1 prints the title of an HTML document specified by a URL.
-package main
+package x
 
 /*
 //!+output

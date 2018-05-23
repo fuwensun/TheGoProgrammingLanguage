@@ -4,7 +4,7 @@
 // See page 142.
 
 // The sum program demonstrates a variadic function.
-package main
+package x
 
 import "fmt"
 

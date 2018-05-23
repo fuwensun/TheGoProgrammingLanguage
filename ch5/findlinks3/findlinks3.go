@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
-	"gopl.io/ch5/links"
+
 	"log"
 	"os"
+
+	"TheGoProgrammingLanguage/ch5/links"
 )
 
 func breadthFirst(f func(item string)[]string, worklist []string){
