@@ -4,7 +4,7 @@
 // See page 146.
 
 // The trace program uses defer to add entry/exit diagnostics to a function.
-package main
+package x
 
 import (
 	"log"
