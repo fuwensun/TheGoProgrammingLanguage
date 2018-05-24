@@ -4,7 +4,7 @@
 // See page 161.
 
 // Coloredpoint demonstrates struct embedding.
-package main
+package x
 
 import (
 	"fmt"
