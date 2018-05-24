@@ -4,7 +4,7 @@
 // See page 173.
 
 // Bytecounter demonstrates an implementation of io.Writer that counts bytes.
-package main
+package x
 
 import (
 	"fmt"
