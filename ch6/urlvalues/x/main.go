@@ -4,7 +4,7 @@
 // See page 160.
 
 // The urlvalues command demonstrates a map type with methods.
-package main
+package x
 
 /*
 //!+values
