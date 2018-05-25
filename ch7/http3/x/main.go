@@ -5,7 +5,7 @@
 
 // Http3 is an e-commerce server that registers the /list and /price
 // endpoints by calling (*http.ServeMux).Handle.
-package main
+package x
 
 import (
 	"fmt"
