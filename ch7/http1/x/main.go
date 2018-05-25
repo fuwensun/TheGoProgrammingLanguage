@@ -4,7 +4,7 @@
 // See page 191.
 
 // Http1 is a rudimentary e-commerce server.
-package main
+package x
 
 import (
 	"fmt"

@@ -4,7 +4,7 @@
 // See page 192.
 
 // Http2 is an e-commerce server with /list and /price endpoints.
-package main
+package x
 
 import (
 	"fmt"
