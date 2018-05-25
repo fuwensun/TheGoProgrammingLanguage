@@ -4,7 +4,7 @@
 // See page 187.
 
 // Sorting sorts a music playlist into a variety of orders.
-package main
+package x
 
 import (
 	"fmt"
