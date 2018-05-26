@@ -5,7 +5,7 @@
 //!+
 
 // Clock1 is a TCP server that periodically writes the time.
-package main
+package x
 
 import (
 	"io"

@@ -4,7 +4,7 @@
 // See page 223.
 
 // Reverb1 is a TCP server that simulates an echo.
-package main
+package x
 
 import (
 	"bufio"
