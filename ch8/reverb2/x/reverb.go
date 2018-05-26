@@ -4,7 +4,7 @@
 // See page 224.
 
 // Reverb2 is a TCP server that simulates an echo.
-package main
+package x
 
 import (
 	"bufio"
