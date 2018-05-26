@@ -27,6 +27,8 @@ func TestCoverage(t *testing.T) {
 
 	for _, test := range tests {
 		expr, err := Parse(test.input)
+		fmt.Println(expr) //my add <----
+
 		if err == nil {
 			err = expr.Check(map[Var]bool{})
 		}

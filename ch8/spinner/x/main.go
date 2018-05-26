@@ -4,7 +4,7 @@
 // See page 218.
 
 // Spinner displays an animation while computing the 45th Fibonacci number.
-package main
+package x
 
 import (
 	"fmt"
