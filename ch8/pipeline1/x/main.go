@@ -4,7 +4,7 @@
 // See page 228.
 
 // Pipeline1 demonstrates an infinite 3-stage pipeline.
-package main
+package x
 
 import "fmt"
 
