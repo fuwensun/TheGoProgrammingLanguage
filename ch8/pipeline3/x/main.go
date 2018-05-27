@@ -5,7 +5,7 @@
 
 // Pipeline3 demonstrates a finite 3-stage pipeline
 // with range, close, and unidirectional channel types.
-package main
+package x
 
 import "fmt"
 
