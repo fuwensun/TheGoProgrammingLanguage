@@ -4,7 +4,7 @@
 // See page 229.
 
 // Pipeline2 demonstrates a finite 3-stage pipeline.
-package main
+package x
 
 import "fmt"
 
