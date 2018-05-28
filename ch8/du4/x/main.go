@@ -4,7 +4,7 @@
 // See page 251.
 
 // The du4 command computes the disk usage of the files in a directory.
-package main
+package x
 
 // The du4 variant includes cancellation:
 // it terminates quickly when the user hits return.

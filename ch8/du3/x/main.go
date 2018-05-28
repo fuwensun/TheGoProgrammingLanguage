@@ -4,7 +4,7 @@
 // See page 250.
 
 // The du3 command computes the disk usage of the files in a directory.
-package main
+package x
 
 // The du3 variant traverses all directories in parallel.
 // It uses a concurrency-limiting counting semaphore
