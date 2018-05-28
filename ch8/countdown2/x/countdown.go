@@ -4,7 +4,7 @@
 // See page 244.
 
 // Countdown implements the countdown for a rocket launch.
-package main
+package x
 
 import (
 	"fmt"

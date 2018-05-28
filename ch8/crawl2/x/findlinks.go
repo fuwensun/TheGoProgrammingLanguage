@@ -7,7 +7,7 @@
 //
 // This version uses a buffered channel as a counting semaphore
 // to limit the number of concurrent calls to links.Extract.
-package main
+package x
 
 import (
 	"fmt"
