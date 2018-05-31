@@ -1,8 +1,17 @@
-package memo
+// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
+// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+// See page 276.
+
+// Package memo provides a concurrency-safe memoization a function of
+// a function.  Requests for different keys proceed in parallel.
+// Concurrent requests for the same key block until the first completes.
+// This implementation uses a Mutex.
+package x
 
 import "sync"
 
-
+// Func is the type of the function to memoize.
 type Func func(string) (interface{}, error)
 
 type result struct {
@@ -10,6 +19,7 @@ type result struct {
 	err   error
 }
 
+//!+
 type entry struct {
 	res   result
 	ready chan struct{} // closed when res is ready
@@ -48,3 +58,4 @@ func (memo *Memo) Get(key string) (value interface{}, err error) {
 	return e.res.value, e.res.err
 }
 
+//!-

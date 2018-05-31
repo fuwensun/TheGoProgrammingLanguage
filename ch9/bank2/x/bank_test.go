@@ -1,9 +1,13 @@
-package bank_test
+// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
+// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+package x
 
 import (
-	"testing"
 	"sync"
-	"TheGoProgrammingLanguage/ch9/bank3"
+	"testing"
+
+	"gopl.io/ch9/bank2"
 )
 
 func TestBank(t *testing.T) {

@@ -1,31 +1,30 @@
-// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
-
-// See page 261.
-//!+
-
-// Package bank provides a concurrency-safe bank with one account.
 package bank
 
-var deposits = make(chan int) // send amount to deposit
-var balances = make(chan int) // receive balance
+import "fmt"
 
-func Deposit(amount int) { deposits <- amount }
-func Balance() int       { return <-balances }
+var deposits = make(chan int)
+var balances = make(chan int)
 
-func teller() {
-	var balance int // balance is confined to teller goroutine
-	for {
+func Deposit(amount int){
+	deposits <- amount
+}
+
+func Balance()int{
+	return <- balances
+}
+
+func teller(){
+	var balance int
+	for{
 		select {
 		case amount := <-deposits:
 			balance += amount
 		case balances <- balance:
+			fmt.Printf("balances <- %d\n",balance)
 		}
 	}
 }
 
-func init() {
-	go teller() // start the monitor goroutine
+func init(){
+	go teller()
 }
-
-//!-
