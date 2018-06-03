@@ -1,12 +1,13 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
 	"io"
 	"os"
-	"fmt"
-	"bytes"
 )
-func main(){
+
+func main() {
 
 }
 func init() {
@@ -27,7 +28,7 @@ func init() {
 	//c := w.(*bytes.Buffer)	// panic: interface holds *os.File, not *bytes.Buffer
 }
 
-func init(){
+func init() {
 
 	//二、	第二种，如果相反断言的类型T是一个接口类型，然后类型断言检查是否x的动态类型满足T。
 	//如果这个检查成功了，动态值没有获取到；这个结果仍然是一个有相同类型和值部分的接口值，但是结果有类型T。
@@ -49,7 +50,6 @@ func init(){
 	//w = new(ByteCounter)
 	//rw = w.(io.ReadWriter) // panic: *ByteCounter has no Read method
 
-
 	//三、	我们几乎不需要对一个更少限制性的接口类型（更少的方法集合）做断言，
 	//因为它表现的就像赋值操作一样，除了对于nil接口值的情况。
 
@@ -57,28 +57,27 @@ func init(){
 	w = rw.(io.Writer) // fails only if rw == nil
 }
 
-func init(){
+func init() {
 	//如果类型断言出现在一个预期有两个结果的赋值操作中，例如如下的定义，
 	//这个操作不会在失败的时候发生panic但是代替地返回一个额外的第二个结果，
 	//这个结果是一个标识成功的布尔值：
 
 	var w io.Writer = os.Stdout
-	f, ok := w.(*os.File)      // success:  ok, f == os.Stdout
-	fmt.Printf("\n%v-%v\n",f.Name(),ok)
+	f, ok := w.(*os.File) // success:  ok, f == os.Stdout
+	fmt.Printf("\n%v-%v\n", f.Name(), ok)
 	b, ok := w.(*bytes.Buffer) // failure: !ok, b == nil
-	fmt.Printf("%v-%v\n",b,ok)
+	fmt.Printf("%v-%v\n", b, ok)
 
 	if f, ok := w.(*os.File); ok {
 		// ...use f...
-		fmt.Printf("%v-%v\n",f.Name(),ok)
+		fmt.Printf("%v-%v\n", f.Name(), ok)
 	}
 
 	if w, ok := w.(*os.File); ok {
 		// ...use w...
-		fmt.Printf("%v-%v\n",w.Name(),ok)
+		fmt.Printf("%v-%v\n", w.Name(), ok)
 	}
 }
-
 
 type MyReader interface {
 	Read(p []byte) (n int, err error)
@@ -96,12 +95,12 @@ type MyNewReadWriter interface {
 	Write(p []byte) (n int, err error)
 }
 
-func init(){
+func init() {
 
 	var rw MyReadWriter = os.Stdout
 	r := rw.(MyReader)
 	w := rw.(MyWriter)
-	fmt.Printf("\n%T - %T - %T\n",rw,r,w)
+	fmt.Printf("\n%T - %T - %T\n", rw, r, w)
 	r = rw
 	w = rw
 
@@ -109,13 +108,13 @@ func init(){
 	var ww MyWriter
 	rr = rw
 	ww = rw
-	fmt.Printf("\n%T - %T - %T\n",rw,rr,ww)
+	fmt.Printf("\n%T - %T - %T\n", rw, rr, ww)
 
 	//--------------------------------------------------
-	var rwn MyNewReadWriter = os.Stdout		 //*os.File
+	var rwn MyNewReadWriter = os.Stdout //*os.File
 	rn := rwn.(MyReader)
 	wn := rwn.(MyWriter)
-	fmt.Printf("\n%T - %T - %T\n",rwn,rn,wn)
+	fmt.Printf("\n%T - %T - %T\n", rwn, rn, wn)
 	rn = rwn
 	wn = rwn
 	//rn = wn
@@ -124,13 +123,11 @@ func init(){
 	var wwn MyWriter
 	rrn = rwn
 	wwn = rwn
-	fmt.Printf("\n%T - %T - %T\n",rwn,rrn,wwn)
-
-
+	fmt.Printf("\n%T - %T - %T\n", rwn, rrn, wwn)
 
 }
 
-func init(){
+func init() {
 	var w io.Writer
 	fmt.Printf("%T\n", w) // "<nil>"
 	w = os.Stdout

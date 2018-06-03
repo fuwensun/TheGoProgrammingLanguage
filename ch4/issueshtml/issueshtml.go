@@ -1,10 +1,10 @@
 package main
 
 import (
-	"os"
-	"log"
 	"TheGoProgrammingLanguage/ch4/github"
 	"html/template"
+	"log"
+	"os"
 )
 
 var issueList = template.Must(template.New("issuelist").Parse(`

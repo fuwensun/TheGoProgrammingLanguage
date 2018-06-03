@@ -1,10 +1,10 @@
 package main
 
 import (
-	"net"
-	"log"
-	"os"
 	"io"
+	"log"
+	"net"
+	"os"
 )
 
 //$ go build gopl.io/ch8/reverb1

@@ -4,7 +4,7 @@
 // See page 295.
 
 // The cross command prints the values of GOOS and GOARCH for this target.
-package main
+package x
 
 import (
 	"fmt"

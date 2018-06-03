@@ -1,14 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"image/color"
 	"math"
-	"fmt"
 )
 
-type Point struct {X, Y float64}
+type Point struct{ X, Y float64 }
 
-type ColoredPoint struct{
+type ColoredPoint struct {
 	Point
 	Color color.RGBA
 }
@@ -37,7 +37,7 @@ func main() {
 	fmt.Println(p.Distance(q.Point)) // "10"
 }
 
-func init(){
+func init() {
 	fmt.Println("\n---------Point----------")
 	p := Point{1, 2}
 	q := Point{4, 6}
@@ -52,7 +52,7 @@ func init(){
 	fmt.Printf("%T\n", scale) // "func(*Point, float64)"
 }
 
-func init(){
+func init() {
 	fmt.Println("\n---------ColoredPoint----------")
 	red := color.RGBA{255, 0, 0, 255}
 	blue := color.RGBA{0, 0, 255, 255}

@@ -1,11 +1,10 @@
 package main
 
 import (
-	"os"
-	"log"
 	"fmt"
+	"log"
+	"os"
 )
-
 
 var cwd string
 
@@ -16,5 +15,5 @@ func main() {
 		log.Fatalf("os.Getwd failed: %v", err)
 	}
 
-	fmt.Println("-->"+cwd)
+	fmt.Println("-->" + cwd)
 }

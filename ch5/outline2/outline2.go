@@ -1,29 +1,29 @@
 package main
 
 import (
-	"os"
-	"net/http"
-	"golang.org/x/net/html"
 	"fmt"
+	"golang.org/x/net/html"
+	"net/http"
+	"os"
 )
 
 //$ ./outline2.exe   https://github.com^
 
 func main() {
-	for _, url := range os.Args[1:]{
+	for _, url := range os.Args[1:] {
 		outline(url)
 	}
 }
 
-func outline(url string)error{
+func outline(url string) error {
 	resp, err := http.Get(url)
-	if err != nil{
+	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
 
 	doc, err := html.Parse(resp.Body)
-	if err != nil{
+	if err != nil {
 		return err
 	}
 
@@ -31,33 +31,32 @@ func outline(url string)error{
 	return nil
 }
 
-func forEachNode(n *html.Node, pre, post func(n *html.Node)){
-	if pre != nil{
+func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
+	if pre != nil {
 		pre(n)
 	}
 
-	for c:= n.FirstChild; c!= nil; c = c.NextSibling{
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
 		forEachNode(c, pre, post)
 	}
 
-	if post != nil{
+	if post != nil {
 		post(n)
 	}
 }
 
 var depth int
 
-func startElement(n *html.Node){
-	if n.Type == html.ElementNode{
-		fmt.Printf("%*s<%s>\n", depth*2,"", n.Data)
+func startElement(n *html.Node) {
+	if n.Type == html.ElementNode {
+		fmt.Printf("%*s<%s>\n", depth*2, "", n.Data)
 		depth++
 	}
 }
 
-func endElement(n *html.Node){
-	if n.Type == html.ElementNode{
+func endElement(n *html.Node) {
+	if n.Type == html.ElementNode {
 		depth--
-		fmt.Printf("%*s</%s>\n", depth*2,"", n.Data)
+		fmt.Printf("%*s</%s>\n", depth*2, "", n.Data)
 	}
 }
-

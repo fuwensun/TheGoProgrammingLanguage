@@ -1,40 +1,38 @@
 package main
 
 import (
-	"fmt"
 	"TheGoProgrammingLanguage/ch5/links"
+	"fmt"
 	"log"
 	"os"
 )
 
-func crawl(url string) []string{
+func crawl(url string) []string {
 	fmt.Println(url)
 	list, err := links.Extract(url)
-	if err != nil{
+	if err != nil {
 		log.Print(err)
 	}
 	return list
 }
 
-
 //./crawl3.exe https://www.github.com
-
 
 func main() {
 
 	worklist := make(chan []string)
 	unseenLinks := make(chan string)
 
-	go func(){
+	go func() {
 		worklist <- os.Args[1:]
 	}()
 
 	// Create 20 crawler goroutines to fetch each unseen link.
-	for i := 0; i < 20; i++{
-		go func(){
-			for link := range unseenLinks{
+	for i := 0; i < 20; i++ {
+		go func() {
+			for link := range unseenLinks {
 				foundLinks := crawl(link)
-				go func(){
+				go func() {
 					worklist <- foundLinks
 				}()
 			}
@@ -42,9 +40,9 @@ func main() {
 	}
 
 	seen := make(map[string]bool)
-	for list := range worklist{
-		for _, link := range list{
-			if !seen[link]{
+	for list := range worklist {
+		for _, link := range list {
+			if !seen[link] {
 				seen[link] = true
 				unseenLinks <- link
 			}

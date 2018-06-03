@@ -1,10 +1,10 @@
 package sort
 
 import (
-	"testing"
-	"sort"
 	"fmt"
 	"math/rand"
+	"sort"
+	"testing"
 )
 
 func TestSort(t *testing.T) {
@@ -20,6 +20,7 @@ func TestSort(t *testing.T) {
 	}
 	fmt.Println(data)
 }
+
 //
 //func main() {
 //

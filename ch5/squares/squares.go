@@ -4,9 +4,9 @@ import "fmt"
 
 func squares() func() int {
 	var x int
-	return func() int{
+	return func() int {
 		x++
-		return x*x
+		return x * x
 	}
 }
 func main() {

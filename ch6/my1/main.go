@@ -1,14 +1,14 @@
 package main
 
-import(
-	"fmt"
+import (
 	"TheGoProgrammingLanguage/ch6/intset"
+	"fmt"
 	/*
-	."TheGoProgrammingLanguage/ch6/intset"
-	_"TheGoProgrammingLanguage/ch6/intset"
-	is"TheGoProgrammingLanguage/ch6/intset"
+		."TheGoProgrammingLanguage/ch6/intset"
+		_"TheGoProgrammingLanguage/ch6/intset"
+		is"TheGoProgrammingLanguage/ch6/intset"
 	*/
-	."TheGoProgrammingLanguage/ch6/geometry"
+	. "TheGoProgrammingLanguage/ch6/geometry"
 )
 
 func main() {
@@ -23,7 +23,6 @@ func main() {
 	fmt.Println(&x)         // "{1 9 42 144}"
 	fmt.Println(x.String()) // "{1 9 42 144}"
 	fmt.Println(x)
-
 
 	fmt.Printf("\n-----geometry------")
 	p := Point{1, 2}
@@ -41,7 +40,7 @@ func main() {
 
 	perim1 := Path{{1, 1}, {5, 1}, {5, 4}, {1, 1}}
 	//fmt.Println(geometry.PathDistance(perim)) // "12", standalone function
-	fmt.Println(perim1.Distance())             // "12", method of geometry.Path
+	fmt.Println(perim1.Distance()) // "12", method of geometry.Path
 
 	r := &Point{1, 2}
 	r.ScaleBy(2)

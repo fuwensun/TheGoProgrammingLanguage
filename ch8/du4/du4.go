@@ -3,14 +3,15 @@ package main
 import (
 	"flag"
 	"fmt"
-	"path/filepath"
 	"os"
-	"time"
+	"path/filepath"
 	"sync"
+	"time"
 )
 
 //!+1
 var done = make(chan struct{})
+
 func cancelled() bool {
 	select {
 	case <-done:
@@ -19,15 +20,15 @@ func cancelled() bool {
 		return false
 	}
 }
-//!-1
 
+//!-1
 
 func main() {
 
 	//初始目录
 	flag.Parse()
 	roots := flag.Args()
-	if len(roots) == 0{
+	if len(roots) == 0 {
 		roots = []string{"."}
 	}
 
@@ -39,16 +40,15 @@ func main() {
 		close(done)
 	}()
 
-
 	//遍历文件目录
 	fileSizes := make(chan int64)
 	var n sync.WaitGroup
-	for _, root := range roots{
-		n.Add(1)				//<---------------
-		go walkDir(root, &n,fileSizes)
+	for _, root := range roots {
+		n.Add(1) //<---------------
+		go walkDir(root, &n, fileSizes)
 	}
 	go func() {
-		n.Wait()					//<---------------
+		n.Wait() //<---------------
 		close(fileSizes)
 	}()
 
@@ -56,7 +56,7 @@ func main() {
 	tick := time.Tick(500 * time.Millisecond)
 	var nfiles, nbytes int64
 loop:
-	for{
+	for {
 		select {
 		case <-done:
 			// Drain fileSizes to allow existing goroutines to finish.
@@ -66,45 +66,43 @@ loop:
 			}
 			return
 		case size, ok := <-fileSizes:
-			if !ok{
+			if !ok {
 				break loop // fileSizes was closed
 			}
 			nfiles++
 			nbytes += size
-		case <- tick:
+		case <-tick:
 			printDiskUsage(nfiles, nbytes)
 		}
 	}
 	printDiskUsage(nfiles, nbytes)
 
-
 }
 
-func printDiskUsage(nfiles, nbytes int64){
-	fmt.Printf("%d files %.1f GB\n",nfiles, float64(nbytes)/1e9)
+func printDiskUsage(nfiles, nbytes int64) {
+	fmt.Printf("%d files %.1f GB\n", nfiles, float64(nbytes)/1e9)
 }
 
-func walkDir(dir string, n *sync.WaitGroup, fileSizes chan<- int64){
+func walkDir(dir string, n *sync.WaitGroup, fileSizes chan<- int64) {
 	if cancelled() {
 		return
 	}
 
-	defer n.Done() 					//<---------------
-	for _, entry := range dirents(dir){
-		if entry.IsDir(){
-			n.Add(1) 		//<---------------
+	defer n.Done() //<---------------
+	for _, entry := range dirents(dir) {
+		if entry.IsDir() {
+			n.Add(1) //<---------------
 			subdir := filepath.Join(dir, entry.Name())
-			go walkDir(subdir, n,fileSizes)
-		}else{
+			go walkDir(subdir, n, fileSizes)
+		} else {
 			fileSizes <- entry.Size()
 		}
 	}
 }
 
+var sema = make(chan struct{}, 20) //超过20个go walkDir()后，这里会阻塞
 
-var sema = make(chan struct{}, 20)//超过20个go walkDir()后，这里会阻塞
-
-func dirents(dir string)[]os.FileInfo{
+func dirents(dir string) []os.FileInfo {
 
 	select {
 	case sema <- struct{}{}: // acquire token
@@ -112,7 +110,6 @@ func dirents(dir string)[]os.FileInfo{
 		return nil
 	}
 	defer func() { <-sema }() // release token
-
 
 	f, err := os.Open(dir)
 	if err != nil {
@@ -128,4 +125,3 @@ func dirents(dir string)[]os.FileInfo{
 	}
 	return entries
 }
-

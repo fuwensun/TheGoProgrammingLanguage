@@ -1,8 +1,8 @@
 package main
 
 import (
-	"time"
 	"fmt"
+	"time"
 )
 
 type Employee struct {
@@ -21,7 +21,7 @@ var employees [5]Employee
 
 func EmployeeByID(id int) Employee {
 
-	for _,e := range employees {
+	for _, e := range employees {
 		if e.ID == id {
 			return e
 		}

@@ -2,19 +2,17 @@ package main
 
 import (
 	"fmt"
-	"sort"
-	"time"
-	"text/tabwriter"
 	"os"
+	"sort"
+	"text/tabwriter"
+	"time"
 )
 
-
-
-type Track struct{
-	Title string
+type Track struct {
+	Title  string
 	Artist string
-	Album string
-	Year int
+	Album  string
+	Year   int
 	Length time.Duration
 }
 
@@ -25,9 +23,9 @@ var tracks = []*Track{
 	{"Ready 2 Go", "Martin Solveig", "Smash", 2011, length("4m24s")},
 }
 
-func length(s string)time.Duration{
+func length(s string) time.Duration {
 	d, err := time.ParseDuration(s)
-	if err != nil{
+	if err != nil {
 		panic(s)
 	}
 	return d
@@ -46,21 +44,24 @@ func printTracks(tracks []*Track) {
 
 //byArtist
 type byArtist []*Track
-func (x byArtist) Len() int				{return len(x)}
-func (x byArtist) Less(i, j int)bool	{return x[i].Artist < x[j].Artist}
-func (x byArtist) Swap(i, j int)		{x[i], x[j] = x[j], x[i]}
+
+func (x byArtist) Len() int           { return len(x) }
+func (x byArtist) Less(i, j int) bool { return x[i].Artist < x[j].Artist }
+func (x byArtist) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 
 type byYear []*Track
-func (x byYear) Len() int			{return len(x)}
-func (x byYear) Less(i, j int)bool	{return x[i].Year < x[j].Year}
-func (x byYear) Swap(i, j int)		{x[i], x[j] = x[j], x[i]}
+
+func (x byYear) Len() int           { return len(x) }
+func (x byYear) Less(i, j int) bool { return x[i].Year < x[j].Year }
+func (x byYear) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 
 type customSort struct {
-	t    []*Track						//t <----
-	less func(x, y *Track) bool			//less <----
+	t    []*Track               //t <----
+	less func(x, y *Track) bool //less <----
 }
+
 func (x customSort) Len() int           { return len(x.t) }
-func (x customSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }	//x.less <----
+func (x customSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) } //x.less <----
 func (x customSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
 
 func main() {
@@ -95,10 +96,8 @@ func main() {
 	printTracks(tracks)
 }
 
-
-
-func init(){
-	values := []int{3,1,4,1}
+func init() {
+	values := []int{3, 1, 4, 1}
 	fmt.Println("----------------init----------------")
 	fmt.Println(sort.IntsAreSorted(values))
 	sort.Ints(values)
@@ -110,47 +109,44 @@ func init(){
 	fmt.Println(sort.IntSlice(values))
 	fmt.Println(sort.Reverse(sort.IntSlice(values)))
 
-	fmt.Printf("%T\n",sort.Reverse(sort.IntSlice(values)))
+	fmt.Printf("%T\n", sort.Reverse(sort.IntSlice(values)))
 	//
 	sort.Sort(sort.Reverse(sort.IntSlice(values)))
 	fmt.Println(values)
 	fmt.Println(sort.IntsAreSorted(values))
 }
 
-
-
-
 //************* My ************
-func init(){
+func init() {
 
 	fmt.Println("------------my init()--------------")
 	fmt.Println("---------myvalues-----------")
-	myvalues := []int{3,1,4,1}
+	myvalues := []int{3, 1, 4, 1}
 	sort.Sort(MyReverseFun(sort.IntSlice(myvalues)))
 	fmt.Println(myvalues)
 
 	fmt.Println("---------myvalues1-----------")
-	myvalues1 := []int{3,1,4,1}
+	myvalues1 := []int{3, 1, 4, 1}
 
 	///////////////////////////////////////
-	var  mr Myreverse = Myreverse{sort.IntSlice(myvalues1)}
-	var  mrp *Myreverse
+	var mr Myreverse = Myreverse{sort.IntSlice(myvalues1)}
+	var mrp *Myreverse
 	mrp = &mr
-	fmt.Printf("===> %v,%v\n",mr.Len(),mrp.Len())		//<----
+	fmt.Printf("===> %v,%v\n", mr.Len(), mrp.Len()) //<----
 
 	var sia, sib sort.Interface
-	sia = mr													//<----
-	sib = &mr													//<----
+	sia = mr  //<----
+	sib = &mr //<----
 	fmt.Println(sia == sib)
-	fmt.Printf("===> %v,%v\n",sia,sib)
-	fmt.Printf("===> %v,%v\n",sia.Len(),sib.Len())		//<----
+	fmt.Printf("===> %v,%v\n", sia, sib)
+	fmt.Printf("===> %v,%v\n", sia.Len(), sib.Len()) //<----
 	sort.Sort(sia)
 	sort.Sort(sib)
 	/////////////////////////////////////
 
 	var myr sort.Interface
 	myr = MyReverseFun(sort.IntSlice(myvalues1))
-	fmt.Printf("-->%T\n",myr)
+	fmt.Printf("-->%T\n", myr)
 	sort.Sort(myr)
 	fmt.Println(myvalues1)
 }
@@ -163,6 +159,6 @@ func (r Myreverse) Less(i, j int) bool {
 	return r.Interface.Less(j, i)
 }
 
-func MyReverseFun(data sort.Interface) sort.Interface { 	//sort.Interface <----
+func MyReverseFun(data sort.Interface) sort.Interface { //sort.Interface <----
 	return &Myreverse{data}
 }

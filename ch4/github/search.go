@@ -1,33 +1,33 @@
 package github
 
 import (
+	"encoding/json"
+	"fmt"
+	"net/http"
 	"net/url"
 	"strings"
-	"net/http"
-	"fmt"
-	"encoding/json"
 )
 
-func SearchIssues(terms []string)(*IssuesSearchResult, error){
+func SearchIssues(terms []string) (*IssuesSearchResult, error) {
 	q := url.QueryEscape(strings.Join(terms, " "))
 	resp, err := http.Get(IssuesURL + "?q=" + q)
 
-	fmt.Printf("---> q = %v\n",q)
+	fmt.Printf("---> q = %v\n", q)
 
-	if err != nil{
+	if err != nil {
 		return nil, err
 	}
 
-	if resp.StatusCode != http.StatusOK{
+	if resp.StatusCode != http.StatusOK {
 		resp.Body.Close()
 		return nil, fmt.Errorf("seatch query failed: %s", resp.Status)
 	}
 
 	var result IssuesSearchResult
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil{
+	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
 		resp.Body.Close()
 		return nil, err
 	}
 	resp.Body.Close()
-	return &result,nil
+	return &result, nil
 }

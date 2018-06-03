@@ -1,10 +1,9 @@
-
 package main
 
 import (
-	"net/http"
-	"log"
 	"fmt"
+	"log"
+	"net/http"
 )
 
 /*

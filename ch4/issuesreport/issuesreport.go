@@ -1,11 +1,11 @@
 package main
 
 import (
-	"time"
-	"html/template"
-	"os"
-	"log"
 	"TheGoProgrammingLanguage/ch4/github"
+	"html/template"
+	"log"
+	"os"
+	"time"
 )
 
 const templ = `{{.TotalCount}} issues:
@@ -16,22 +16,21 @@ Title:  {{.Title | printf "%.64s"}}
 Age:    {{.CreatedAt | daysAgo}} days
 {{end}}`
 
-func daysAgo(t time.Time) int{
-	return int(time.Since(t).Hours()/24)
+func daysAgo(t time.Time) int {
+	return int(time.Since(t).Hours() / 24)
 }
 
 var report = template.Must(template.New("issuelist").
-	Funcs(template.FuncMap{"daysAgo":daysAgo}).
+	Funcs(template.FuncMap{"daysAgo": daysAgo}).
 	Parse(templ))
 
 //$  ./issuesreport.exe repo:golang/go is:open json decoder
 func main() {
 	result, err := github.SearchIssues(os.Args[1:])
-	if err != nil{
+	if err != nil {
 		log.Fatal(err)
 	}
-	if err := report.Execute(os.Stdout, result); err != nil{
+	if err := report.Execute(os.Stdout, result); err != nil {
 		log.Fatal(err)
 	}
 }
-

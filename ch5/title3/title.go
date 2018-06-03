@@ -47,19 +47,19 @@ func soleTitle(doc *html.Node) (title string, err error) {
 	}()
 
 	// Bail out of recursion if we find more than one non-empty title.
-	forEachNode(doc, func(n *html.Node) {		//<-------AAA
+	forEachNode(doc, func(n *html.Node) { //<-------AAA
 		if n.Type == html.ElementNode && n.Data == "title" &&
 			n.FirstChild != nil {
 			if title != "" {
 				panic(bailout{}) // multiple title elements//<-------BBB
 			}
-			title = n.FirstChild.Data		//<-------CCC
+			title = n.FirstChild.Data //<-------CCC
 		}
 	}, nil)
 	if title == "" {
 		return "", fmt.Errorf("no title element")
 	}
-	return title, nil				//<-------DDD
+	return title, nil //<-------DDD
 }
 
 //!-

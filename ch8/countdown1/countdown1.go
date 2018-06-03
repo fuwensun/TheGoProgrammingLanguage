@@ -8,13 +8,13 @@ import (
 func main() {
 	fmt.Println("Commencing countdown.")
 	tick := time.Tick(1 * time.Second)
-	for countdown := 10; countdown > 0; countdown--{
+	for countdown := 10; countdown > 0; countdown-- {
 		fmt.Println()
 		<-tick
 	}
 	launch()
 }
 
-func launch(){
+func launch() {
 	fmt.Println("Lift off!")
 }

@@ -2,10 +2,10 @@ package main
 
 import "fmt"
 
-func nonempty(strings []string) []string{
+func nonempty(strings []string) []string {
 	i := 0
-	for _,s := range strings{
-		if s != ""{
+	for _, s := range strings {
+		if s != "" {
 			strings[i] = s
 			i++
 		}
@@ -13,10 +13,10 @@ func nonempty(strings []string) []string{
 	return strings[:i]
 }
 
-func nonempty2(strings []string) []string{
+func nonempty2(strings []string) []string {
 	out := strings[:0]
-	for _, s := range strings{
-		if s != ""{
+	for _, s := range strings {
+		if s != "" {
 			out = append(out, s)
 		}
 	}

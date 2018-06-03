@@ -1,10 +1,10 @@
 package main
 
 import (
-	"os"
-	"log"
-	"fmt"
 	"TheGoProgrammingLanguage/ch4/github"
+	"fmt"
+	"log"
+	"os"
 )
 
 //$ ./issues.exe repo:golang/go is:open json decoder

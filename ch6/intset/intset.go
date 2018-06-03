@@ -5,47 +5,47 @@ import (
 	"fmt"
 )
 
-type IntSet struct{
+type IntSet struct {
 	words []uint64
 }
 
-func (s *IntSet)Has(x int)bool{
+func (s *IntSet) Has(x int) bool {
 	word, bit := x/64, uint(x%64)
-	return word < len(s.words) && s.words[word]&(1<<bit)!=0
+	return word < len(s.words) && s.words[word]&(1<<bit) != 0
 }
 
-func (s *IntSet)Add(x int){
+func (s *IntSet) Add(x int) {
 	word, bit := x/64, uint(x%64)
-	for word >= len(s.words){
+	for word >= len(s.words) {
 		s.words = append(s.words, 0)
 	}
 	s.words[word] |= 1 << bit
 }
 
-func (s *IntSet)UnionWith(t *IntSet){
-	for i, tword := range t.words{
-		if i < len(s.words){
+func (s *IntSet) UnionWith(t *IntSet) {
+	for i, tword := range t.words {
+		if i < len(s.words) {
 			s.words[i] |= tword
-		}else{
+		} else {
 			s.words = append(s.words, tword)
 		}
 	}
 }
 
-func (s *IntSet)String()string{
+func (s *IntSet) String() string {
 	var buf bytes.Buffer
 	buf.WriteByte('{')
-	for i, word := range s.words{
-		if word == 0{
+	for i, word := range s.words {
+		if word == 0 {
 			continue
 		}
 
-		for j := 0; j < 64; j++{
-			if word&(1<<uint(j)) != 0{
-				if buf.Len() > len("{"){		//buf不是空的，可以加空格分割<---
+		for j := 0; j < 64; j++ {
+			if word&(1<<uint(j)) != 0 {
+				if buf.Len() > len("{") { //buf不是空的，可以加空格分割<---
 					buf.WriteByte(' ')
 				}
-				fmt.Fprintf(&buf, "%d", 64*i+j)//写入buf<----
+				fmt.Fprintf(&buf, "%d", 64*i+j) //写入buf<----
 			}
 		}
 	}

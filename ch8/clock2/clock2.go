@@ -1,21 +1,22 @@
 package main
 
 import (
-	"net"
-	"log"
 	"io"
+	"log"
+	"net"
 	"time"
 )
+
 //nc localhost 8000
 func main() {
-	listener, err := net.Listen("tcp","localhost:8000")
-	if err != nil{
+	listener, err := net.Listen("tcp", "localhost:8000")
+	if err != nil {
 		log.Fatal(err)
 	}
 
-	for{
+	for {
 		conn, err := listener.Accept()
-		if err != nil{
+		if err != nil {
 			log.Print(err)
 			continue
 		}
@@ -23,11 +24,11 @@ func main() {
 	}
 }
 
-func handleConn(c net.Conn){
+func handleConn(c net.Conn) {
 	defer c.Close()
-	for{
+	for {
 		_, err := io.WriteString(c, time.Now().Format("15:04:05\n"))
-		if err != nil{
+		if err != nil {
 			return
 		}
 		time.Sleep(1 * time.Second)

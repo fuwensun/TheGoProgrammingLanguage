@@ -7,23 +7,23 @@ func main() {
 	squares := make(chan int)
 
 	//counter
-	go func(){
-		for x := 0; x < 100; x++{
+	go func() {
+		for x := 0; x < 100; x++ {
 			naturals <- x
 		}
 		close(naturals)
 	}()
 
 	//squares
-	go func(){
-		for x := range naturals{
-			squares <- x*x
+	go func() {
+		for x := range naturals {
+			squares <- x * x
 		}
 		close(squares)
 	}()
 
 	//print
-	for x := range squares{
+	for x := range squares {
 		fmt.Println(x)
 	}
 }

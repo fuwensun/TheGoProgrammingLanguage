@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"golang.org/x/net/html"
 	"net/http"
-	"fmt"
 	"os"
 	"strings"
 )
@@ -20,31 +20,31 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 	}
 }
 
-func title(url string) error{
-	resp,err := http.Get(url)
-	if err != nil{
+func title(url string) error {
+	resp, err := http.Get(url)
+	if err != nil {
 		return err
 	}
 
 	ct := resp.Header.Get("Content-Type")
-	if ct != "text/html" && !strings.HasPrefix(ct,"text/html;"){
+	if ct != "text/html" && !strings.HasPrefix(ct, "text/html;") {
 		resp.Body.Close()
-		return fmt.Errorf("%s has type %s, not text/html",url, ct)
+		return fmt.Errorf("%s has type %s, not text/html", url, ct)
 	}
 
 	doc, err := html.Parse(resp.Body)
 	resp.Body.Close()
-	if err != nil{
-		return fmt.Errorf("parsing %s as HTML: %v",url, err)
+	if err != nil {
+		return fmt.Errorf("parsing %s as HTML: %v", url, err)
 	}
 
-	visitNode := func(n *html.Node){
+	visitNode := func(n *html.Node) {
 		//if n.Type == html.ElementNode {
 		//	fmt.Println(n.Data)					// <--------
 		//}
 		if n.Type == html.ElementNode && n.Data == "title" &&
-			n.FirstChild != nil{
-				fmt.Println(n.FirstChild.Data) // <---------
+			n.FirstChild != nil {
+			fmt.Println(n.FirstChild.Data) // <---------
 		}
 	}
 	forEachNode(doc, visitNode, nil)
@@ -53,9 +53,9 @@ func title(url string) error{
 
 //$ ./title1.exe https://www.github.com http://www.baidu.com
 func main() {
-	for _, arg := range os.Args[1:]{
-		if err := title(arg); err != nil{
-			fmt.Fprintf(os.Stderr,"title: %v\n",err)
+	for _, arg := range os.Args[1:] {
+		if err := title(arg); err != nil {
+			fmt.Fprintf(os.Stderr, "title: %v\n", err)
 		}
 	}
 }

@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
 )
 
 type dollars float32
 
-func (d dollars)String() string {
+func (d dollars) String() string {
 	return fmt.Sprintf("%.2f", d)
 }
 
@@ -43,32 +43,32 @@ func ListenAndServe(addr string, handler Handler) error {
 }
 */
 func main() {
-	db := database{"shoes":50, "socks":5}
+	db := database{"shoes": 50, "socks": 5}
 	mux := http.NewServeMux()
-	mux.Handle("/list",http.HandlerFunc(db.list))
-	mux.Handle("/price",http.HandlerFunc(db.price))
+	mux.Handle("/list", http.HandlerFunc(db.list))
+	mux.Handle("/price", http.HandlerFunc(db.price))
 	/*
-	mux.HandleFunc("/list", db.list)
-	mux.HandleFunc("/price", db.price)
+		mux.HandleFunc("/list", db.list)
+		mux.HandleFunc("/price", db.price)
 	*/
-	log.Fatal(http.ListenAndServe("localhost:8000",mux))
+	log.Fatal(http.ListenAndServe("localhost:8000", mux))
 }
 
 type database map[string]dollars
 
-func (db database)list(w http.ResponseWriter, req *http.Request){
-	for item, price := range db{
-		fmt.Fprintf(w, "%s: %s\n",item, price)
+func (db database) list(w http.ResponseWriter, req *http.Request) {
+	for item, price := range db {
+		fmt.Fprintf(w, "%s: %s\n", item, price)
 	}
 }
 
-func (db database)price(w http.ResponseWriter, req *http.Request){
+func (db database) price(w http.ResponseWriter, req *http.Request) {
 	item := req.URL.Query().Get("item")
 	price, ok := db[item]
-	if !ok{
+	if !ok {
 		w.WriteHeader(http.StatusNotFound)
-		fmt.Fprintf(w,"no such item: %q\n",item)
+		fmt.Fprintf(w, "no such item: %q\n", item)
 		return
 	}
-	fmt.Fprintf(w,"%s\n",price)
+	fmt.Fprintf(w, "%s\n", price)
 }

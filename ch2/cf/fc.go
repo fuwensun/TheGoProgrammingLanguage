@@ -1,19 +1,19 @@
 package main
 
 import (
+	"TheGoProgrammingLanguage/ch2/tempconv"
+	"fmt"
 	"os"
 	"strconv"
-	"fmt"
-	"TheGoProgrammingLanguage/ch2/tempconv"
 	//"gopl.io/ch2/tempconv"
 )
 
 func main() {
-	for _, arg := range os.Args[1:]{
-		t,err := strconv.ParseFloat(arg, 64)
+	for _, arg := range os.Args[1:] {
+		t, err := strconv.ParseFloat(arg, 64)
 
-		if err != nil{
-			fmt.Fprintf(os.Stderr,"cf: %v\n",err)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "cf: %v\n", err)
 			os.Exit(1)
 		}
 
