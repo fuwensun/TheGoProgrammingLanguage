@@ -13,7 +13,7 @@ import "unicode"
 // Letter case is ignored, as are non-letters.
 func IsPalindrome(s string) bool {
 	var letters []rune
-	for _, r := range s {
+	for _, r := range s {	//<--- rune为的单位的迭代器***注意***
 		if unicode.IsLetter(r) {
 			letters = append(letters, unicode.ToLower(r))
 		}
