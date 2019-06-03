@@ -31,9 +31,9 @@ defer 1
 defer 2
 defer 3
 goroutine 1 [running]:
-main.printStack()
+main.printStack()//后 找到 defer 函数, 打印全部栈(包括自己和panic)
         /mnt/i/github.com/gkt_cc_go/src/example/defer2/defer2.go:16 +0x5b
-panic(0x4a20c0, 0x554270)
+panic(0x4a20c0, 0x554270)//先 panic
         /usr/local/go/src/runtime/panic.go:522 +0x1b5
 main.f(0x0)
         /mnt/i/github.com/gkt_cc_go/src/example/defer2/defer2.go:21 +0x174
